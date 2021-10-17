@@ -1,25 +1,30 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cmath>
+#include <iomanip>
+#include <iostream>
 using namespace std;
-using ll = long long;
-#define REP(i, n) for(int i = 0; i < (int)(n); i++)
 
 int main() {
-    int n;
-    cin >> n;
-    vector<int> x(n), y(n);
-    REP(i, n) cin >> x[i] >> y[i];
+    int N;
+    cin >> N;
+    int x[N], y[N];
+    int a[N];
+    for(int i = 0; i < N; ++i) {
+        cin >> x[i] >> y[i];
+        a[i] = i;
+    }
 
-    vector<int> vi(n);
-    iota(vi.begin(), vi.end(), 0);
-    double sum = 0;
+    double tot = 0;
     int cnt = 0;
     do {
-        REP(i, n - 1) {
-            sum += sqrt((x[vi[i]] - x[vi[i + 1]]) * (x[vi[i]] - x[vi[i + 1]]) +
-                        (y[vi[i]] - y[vi[i + 1]]) * (y[vi[i]] - y[vi[i + 1]]));
+        for(int i = 0; i < N - 1; ++i) {
+            tot += sqrt((x[a[i + 1]] - x[a[i]]) * (x[a[i + 1]] - x[a[i]]) +
+                        (y[a[i + 1]] - y[a[i]]) * (y[a[i + 1]] - y[a[i]]));
         }
-        cnt++;
-    } while(next_permutation(vi.begin(), vi.end()));
+        ++cnt;
+    } while(next_permutation(a, a + N));
 
-    cout << fixed << setprecision(7) << sum / cnt << endl;
+    cout << fixed << setprecision(10);
+    cout << tot / cnt << endl;
+    return 0;
 }

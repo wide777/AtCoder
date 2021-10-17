@@ -1,24 +1,27 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <iostream>
+#include <numeric>
+#include <vector>
 using namespace std;
-using ll = long long;
-#define REP(i, n) for(int i = 0; i < (int)(n); i++)
 
 int main() {
-    int n;
-    cin >> n;
-    vector<int> p(n), q(n);
-    REP(i, n) cin >> p[i];
-    REP(i, n) cin >> q[i];
+    int N;
+    cin >> N;
+    vector<int> P(N), Q(N);
+    for(auto &x : P) cin >> x;
+    for(auto &x : Q) cin >> x;
 
-    int cnt = 0, pnum, qnum;
-    vector<int> vi(n);
-    iota(vi.begin(), vi.end(), 1);
+    vector<int> A(N);
+    iota(A.begin(), A.end(), 1);
+
+    int a, b;
+    int cnt = 0;
     do {
-        cnt++;
-        if(vi == p) pnum = cnt;
-        if(vi == q) qnum = cnt;
+        ++cnt;
+        if(A == P) a = cnt;
+        if(A == Q) b = cnt;
+    } while(next_permutation(A.begin(), A.end()));
 
-    } while(next_permutation(vi.begin(), vi.end()));
-
-    cout << abs(pnum - qnum) << endl;
+    cout << abs(a - b) << endl;
+    return 0;
 }
