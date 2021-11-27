@@ -1,16 +1,14 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
-using ll = long long;
-#define REP(i, n) for(int i = 0; i < (int)(n); i++)
 
 int main() {
-    ll a, b, k;
-    cin >> a >> b >> k;
-    if(a > k) {
-        cout << a - k << " " << b << endl;
-    } else if(a + b > k) {
-        cout << 0 << " " << b - (k - a) << endl;
-    } else {
-        cout << 0 << " " << 0 << endl;
-    }
+    long long A, B, K;
+    cin >> A >> B >> K;
+
+    long long a = max(0LL, A - K);
+    K = max(0LL, K - A);
+    long long b = max(0LL, B - K);
+    cout << a << " " << b << endl;
+
+    return 0;
 }
